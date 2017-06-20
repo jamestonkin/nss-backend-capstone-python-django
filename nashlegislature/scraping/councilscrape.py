@@ -61,7 +61,7 @@ columns = ['first_name', 'last_name', 'email', 'district']
 df = pd.DataFrame(council_members, columns=columns)
 con = sql.connect("../db.sqlite3")
 try:
-    pd_sql.to_sql(df, "legislatureapi_councilmember", con, index=False)
+    pd_sql.to_sql(df, "website_councilmember", con, index=False)
 
 except ValueError:
-    pd_sql.to_sql(df, "legislatureapi_councilmember", con, index=False, if_exists='append')
+    pd_sql.to_sql(df, "website_councilmember", con, index=False, if_exists='append')

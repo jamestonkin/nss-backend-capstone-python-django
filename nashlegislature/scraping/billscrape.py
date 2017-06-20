@@ -41,7 +41,7 @@ columns = ['link_to_bill', 'name', 'synopsis']
 df = pd.DataFrame(bill_list, columns=columns)
 con = sql.connect("../db.sqlite3")
 try:
-    pd_sql.to_sql(df, "legislatureapi_billlegislationsynopsis", con, index=False)
+    pd_sql.to_sql(df, "website_billlegislationsynopsis", con, index=False)
 
 except ValueError:
-    pd_sql.to_sql(df, "legislatureapi_billlegislationsynopsis", con, index=False, if_exists='append')
+    pd_sql.to_sql(df, "website_billlegislationsynopsis", con, index=False, if_exists='append')

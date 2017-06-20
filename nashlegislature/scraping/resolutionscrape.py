@@ -37,7 +37,7 @@ columns = ['link_to_resolution', 'name', 'synopsis']
 df = pd.DataFrame(resolution_list, columns=columns)
 con = sql.connect("../db.sqlite3")
 try:
-    pd_sql.to_sql(df, "legislatureapi_resolutionlegislationsynopsis", con, index=False)
+    pd_sql.to_sql(df, "website_resolutionlegislationsynopsis", con, index=False)
 
 except ValueError:
-    pd_sql.to_sql(df, "legislatureapi_resolutionlegislationsynopsis", con, index=False, if_exists='append')
+    pd_sql.to_sql(df, "website_resolutionlegislationsynopsis", con, index=False, if_exists='append')

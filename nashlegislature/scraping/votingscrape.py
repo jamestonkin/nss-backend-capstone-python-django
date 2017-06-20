@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import pandas.io.sql as pd_sql
 import sqlite3 as sql
+import re
 
 
 minutes_link_list = list()
@@ -56,6 +57,7 @@ for link in minutes_link_list:
     a_tags = html.find_all('a')
 
     vote_list = list()
+    id_list = list()
 
     for bills in a_tags:
         each_bill = bills.text.split(' ')
@@ -71,22 +73,30 @@ for link in minutes_link_list:
         p_tag = i.find_next('p')
         p_content = p_tag.text
 
+        id_num = re.compile("(BL)?(RS)?[0-9]{4}")
+        if id_num.search(p_content):
+            print('yes we have IDs', p_content)
+            id_list.append([p_content])
         # Making sure that the summary contains votes looking for the "Ayes" in the content.
-        if 'Ayes' in p_content:
+        ayes = re.compile("Ayes")
+        if ayes.search(p_content):
+            print('yes we have ayes')
             vote_list.append([p_content])
 
-    # Counting "Ayes" votes
-    for i in vote_list:
-        ayes_count = list()
-        split_sentence = i[0].split(' ')
-        ayes_key = split_sentence.index('“Ayes”')
-        for v in split_sentence[ayes_key:]:
-            if v == '“Noes”':
-                break
-            if v != '':
-                ayes_count.append(v)
-        del ayes_count[-1]
-        del ayes_count[0]
-        print(ayes_count)
-        print(len(ayes_count) - 1)
+    # # Counting "Ayes" votes
+    # for i in vote_list:
+    #     ayes_count = list()
+    #     split_sentence = i[0].split(' ')
+    #     ayes_key = split_sentence.index('“Ayes”')
+    #     for v in split_sentence[ayes_key:]:
+    #         if v == '“Noes”':
+    #             break
+    #         if v != '':
+    #             ayes_count.append(v)
+    #     del ayes_count[-1]
+    #     del ayes_count[0]
+        # print(ayes_count)
+        # print(len(ayes_count) - 1)
+    print(id_list)
+    print(vote_list)
 
