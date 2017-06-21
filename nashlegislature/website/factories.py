@@ -69,7 +69,7 @@ class BillVotingFactoryC(factory.django.DjangoModelFactory):
     class Meta:
         model = BillVoting
     vote = factory.Faker('random_int', min=0, max=3)
-    council_member = CouncilMember.objects.get(pk=39)
+    council_member = CouncilMember.objects.get(pk=40)
     bill_legislation_synopsis = factory.Iterator(BillLegislationSynopsis.objects.all())
 
 class ResolutionVotingFactoryC(factory.django.DjangoModelFactory):
@@ -83,7 +83,7 @@ class ResolutionVotingFactoryC(factory.django.DjangoModelFactory):
     class Meta:
         model = ResolutionVoting
     vote = factory.Faker('random_int', min=0, max=3)
-    council_member = CouncilMember.objects.get(pk=39)
+    council_member = CouncilMember.objects.get(pk=40)
     resolution_legislation_synopsis = factory.Iterator(ResolutionLegislationSynopsis.objects.all())
 
 class BillVotingFactoryD(factory.django.DjangoModelFactory):

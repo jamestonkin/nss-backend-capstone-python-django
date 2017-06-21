@@ -17,16 +17,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         management.call_command('makemigrations', 'website')
         management.call_command('migrate')
-        ResolutionVotingFactoryA.create_batch(size=765)
-        ResolutionVotingFactoryB.create_batch(size=765)
-        ResolutionVotingFactoryC.create_batch(size=765)
-        ResolutionVotingFactoryD.create_batch(size=765)
-        ResolutionVotingFactoryE.create_batch(size=765)
+        # ResolutionVotingFactoryA.create_batch(size=765)
+        # ResolutionVotingFactoryB.create_batch(size=765)
+        # ResolutionVotingFactoryC.create_batch(size=765)
+        # ResolutionVotingFactoryD.create_batch(size=765)
+        # ResolutionVotingFactoryE.create_batch(size=765)
         BillVotingFactoryA.create_batch(size=796)
         BillVotingFactoryB.create_batch(size=796)
         BillVotingFactoryC.create_batch(size=796)
-        BillVotingFactoryD.create_batch(size=796)
-        BillVotingFactoryE.create_batch(size=796)
+        # BillVotingFactoryD.create_batch(size=796)
+        # BillVotingFactoryE.create_batch(size=796)
         # UserFactory.create_batch(size=5)
         """
         UserFactory is commented out due to the factory now being a one to one with the profile factory, profile factory calls upon the creation of the user through the profilefactory, line 175 in factories.py
