@@ -5,6 +5,14 @@
                 <a href="{% url 'website:index' %}">Nashville Legislation Home</a>
             </li>
         </ul>
+        <form class="navbar-form navbar-right" id="searchform" action="{% url 'website:legislation_search' %}" method="get">
+            <div class="form-group">
+                <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Legislation Search">
+            </div>
+            <button class="searchbutton" type="submit">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+        </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="{% url 'website:council' %}">Council Members</a>

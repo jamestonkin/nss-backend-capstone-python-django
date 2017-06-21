@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Nashville Legislation</title>
+        {%include "styles.html"%}
+    </head>
+    <body>
+        {%include "navbar.html"%}
+        <h1 class="text-center page-title">Search Results:</h1>
+        {% if all_bills %}
+        <div class="row">
+            {% for bill in all_bills %}
+            <div>
+                <div class="card-container text-center bluecard">
+                    <div class="row content-holder">
+                        <div>
+                            <h2>{{ bill.name }}</h2>
+                            <h4><a href="{% url 'website:bill_voting' bill.id %}">Click to see Voting on {{ bill.name }}</a></h4>
+                        </div>
+                        <div>
+                            <p class="text-left card-text">{{ bill.name}} {{ bill.synopsis }}</p>
+                            <h4><a href="{{ bill.link_to_bill }}" target="_blank">Click to see full body of Ordinance {{ bill.name }}</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            {% endfor %}
+        <div>
+        {% elif all_resolutions}
+        <div class="row">
+            {% for resolution in all_resolutions %}
+            <div>
+                <div class="card-container text-center bluecard">
+                    <div class="row content-holder">
+                        <div>
+                            <h2>{{ resolution.name }}</h2>
+                            <h4><a href="{% url 'website:resolution_voting' resolution.id %}">Click to see Voting on {{ resolution.name }}</a></h4>
+                        </div>
+                        <div>
+                            <p class="text-left card-text">{{ resolution.name}} {{ resolution.synopsis }}</p>
+                            <h4><a href="{{ resolution.link_to_resolution }}" target="_blank">Click to see full body of Resolution {{ resolution.name }}</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            {% endfor %}
+        {% else %}
+            <h3 class="bg-danger text-center page-title">Sorry, no products matched your search. Try again!</h3>
+        <div>
+        {% endif %}
+
+    </body>
+</html>
