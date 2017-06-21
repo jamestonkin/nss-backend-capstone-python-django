@@ -8,12 +8,12 @@
     </head>
     <body>
         {%include "navbar.html"%}
-        <h1 class="text-center">Council Members</h1>
+        <h1 class="text-center page-title">Council Members</h1>
 
         <div class="row">
         {% for member in council_members %}
             <div class="col-md-3">
-                <div class="card-container text-center">
+                <div class="card-container text-center bluecard">
                     <div class="row content-holder">
                         <div class="col-md-12">
                             <h3>{{ member.first_name }} {{ member.last_name }}</h3>
