@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Nashville Legislation</title>
+        {%include "styles.html"%}
+    </head>
+    <body>
+        {%include "navbar.html"%}
+        <h1 class="text-center page-title">Voting for <a class="bluehover" href="{{ current_bill.link_to_bill }}" target="_blank">{{ current_bill.name }}</a></h1>
+
+        <div class="row">
+            <div class="card-container text-center bluecard">
+                <div class="row content-holder">
+                    <div class="col-sm-3">
+                        <h2><u>YES - {{ yes_votes.count }}</u></h2>
+                        {% for yes in yes_votes %}
+                        <ul class="list-unstyled">
+                            <li><a href="mailto:{{ yes.council_member.email }}">{{ yes.council_member.last_name }} - {{ yes.council_member.district }}</a></li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                    <div class="col-sm-3">
+                        <h2><u>NO - {{ no_votes.count }}</u></h2>
+                        {% for no in no_votes %}
+                        <ul class="list-unstyled">
+                            <li><a href="mailto:{{ no.council_member.email }}">{{ no.council_member.last_name }} - {{ no.council_member.district }}</a></li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                    <div class="col-sm-3">
+                        <h2><u>ABSTAIN - {{ abstain_votes.count }}</u></h2>
+                        {% for abstain in abstain_votes %}
+                        <ul class="list-unstyled">
+                            <li><a href="mailto:{{ abstain.council_member.email }}">{{ abstain.council_member.last_name }} - {{ abstain.council_member.district }}</a></li>
+                        </ul>
+                        {% endfor %}
+                    </div>    
+                    <div class="col-sm-3">
+                        <h2><u>ABSENT - {{ abstain_votes.count }}</u></h2>
+                        {% for absent in absent_votes %}
+                        <ul class="list-unstyled">
+                            <li><a href="mailto:{{ absent.council_member.email }}">{{ absent.council_member.last_name }} - {{ absent.council_member.district }}</a></li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        <div>
+
+    </body>
+</html>

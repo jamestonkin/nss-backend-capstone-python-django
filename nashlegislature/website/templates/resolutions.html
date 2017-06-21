@@ -8,19 +8,19 @@
     </head>
     <body>
         {%include "navbar.html"%}
-        <h1 class="text-center">Resolutions for the Current Administration</h1>
+        <h1 class="text-center page-title">Resolutions for the Current Administration</h1>
 
         <div class="row">
         {% for resolution in resolution_list %}
             <div>
-                <div class="card-container text-center">
+                <div class="card-container text-center bluecard">
                     <div class="row content-holder">
                         <div>
                             <h2>{{ resolution.name }}</h2>
-                            <h4><a href="">Click to see Voting on {{ resolution.name }}</a></h4>
+                            <h4><a href="{% url 'website:resolution_voting' resolution.id %}">Click to see Voting on {{ resolution.name }}</a></h4>
                         </div>
                         <div>
-                            <h5 class="legis_synop">{{ resolution.name}} {{ resolution.synopsis }}</h5>
+                            <p class="text-left card-text">{{ resolution.name}} {{ resolution.synopsis }}</p>
                             <h4><a href="{{ resolution.link_to_resolution }}" target="_blank">Click to see full body of Resolution {{ resolution.name }}</a></h4>
                         </div>
                     </div>

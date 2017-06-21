@@ -8,19 +8,19 @@
     </head>
     <body>
         {%include "navbar.html"%}
-        <h1 class="text-center">Ordinances for the Current Administration</h1>
+        <h1 class="text-center page-title">Ordinances for the Current Administration</h1>
 
         <div class="row">
         {% for bill in bill_list %}
             <div>
-                <div class="card-container text-center">
+                <div class="card-container text-center bluecard">
                     <div class="row content-holder">
                         <div>
                             <h2>{{ bill.name }}</h2>
-                            <h4><a href="">Click to see Voting on {{ bill.name }}</a></h4>
+                            <h4><a href="{% url 'website:bill_voting' bill.id %}">Click to see Voting on {{ bill.name }}</a></h4>
                         </div>
                         <div>
-                            <h5 class="legis_synop">{{ bill.name}} {{ bill.synopsis }}</h5>
+                            <p class="text-left card-text">{{ bill.name}} {{ bill.synopsis }}</p>
                             <h4><a href="{{ bill.link_to_bill }}" target="_blank">Click to see full body of Ordinance {{ bill.name }}</a></h4>
                         </div>
                     </div>
