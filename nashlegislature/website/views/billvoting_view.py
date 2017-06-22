@@ -33,10 +33,14 @@ def bill_voting(request, billlegislationsynopsis_id):
         vote=3
     )
 
+    total_votes = BillVoting.objects.all().filter(
+        bill_legislation_synopsis_id=billlegislationsynopsis_id).count()
+
     return render(request, template_name,
         {'current_bill': current_bill,
         'yes_votes': yes_votes,
         'no_votes': no_votes,
         'abstain_votes': abstain_votes,
-        'absent_votes': absent_votes}
+        'absent_votes': absent_votes,
+        'total_votes': total_votes}
     )

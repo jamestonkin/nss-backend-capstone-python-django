@@ -48,3 +48,11 @@ a, a:hover, a:active, a:visited, a:focus {
 .page-title {
     color: #002D62;
 }
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}

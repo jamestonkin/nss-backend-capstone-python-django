@@ -9,6 +9,58 @@
     <body>
         {%include "navbar.html"%}
         <h1 class="text-center page-title">Voting for <a class="bluehover" href="{{ current_bill.link_to_bill }}" target="_blank">{{ current_bill.name }}</a></h1>
+        <div id="chart-container" class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+                <canvas id="myChart" class="chart"></canvas>
+                <script>
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Yes", "No", "Abstain", "Absent"],
+                        datasets: [{
+                            label: 'Counting {{ total_votes }} Total Votes',
+                            data: [{{ yes_votes.count }}, {{ no_votes.count }}, {{ abstain_votes.count }}, {{ absent_votes.count }}],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(54, 162, 235, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+                </script>
+            </div>
+        </div>
+        <div>
+        {% if yes_votes.count > no_votes.count %}
+            <h2 class="text-center green">Passed!</h2>
+        {% else %}
+            <h2 class="text-center red">Failed!</h2>
+        {% endif %}
+        </div>
 
         <div class="row">
             <div class="card-container text-center bluecard">
@@ -48,6 +100,6 @@
                 </div>
             </div>
         <div>
-
+        
     </body>
 </html>

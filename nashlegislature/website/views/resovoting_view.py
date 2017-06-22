@@ -33,10 +33,14 @@ def resolution_voting(request, resolutionlegislationsynopsis_id):
         vote=3
     )
 
+    total_votes = ResolutionVoting.objects.all().filter(
+        resolution_legislation_synopsis_id=resolutionlegislationsynopsis_id).count()
+
     return render(request, template_name,
         {'current_resolution': current_resolution,
         'yes_votes': yes_votes,
         'no_votes': no_votes,
         'abstain_votes': abstain_votes,
-        'absent_votes': absent_votes}
+        'absent_votes': absent_votes,
+        'total_votes': total_votes}
     )
