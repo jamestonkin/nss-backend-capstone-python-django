@@ -7,6 +7,9 @@
 2. Store this information into a SQL database using pandas.
 3. Present this information using Django Framework.
 
+Voting Screenshot:
+![voting screenshot](images/voting_page.png?raw=true)
+
 ## Instructions
 Install [pip](https://packaging.python.org/installing/)
 
